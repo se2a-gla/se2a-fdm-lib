@@ -1,0 +1,9 @@
+[submodule "modules/trimmod"]
+	path = modules/trimmod
+	url = ../trimmod
+[submodule "modules/se2a-fdm-data"]
+	path = modules/se2a-fdm-data
+	url = ../se2a-fdm-data
+[submodule "modules/ladac"]
+	path = modules/ladac
+	url = ../../iff-gsc/ladac
