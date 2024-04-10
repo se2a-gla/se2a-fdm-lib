@@ -39,6 +39,7 @@ addParameter(p,'stall',false,@islogical);
 addParameter(p,'le_shock',false,@islogical);
 
 addParameter(p,'Mach',0);
+addParameter(p,'Alt',0);
 
 addParameter(p,'AdjustJigTwist',true,@islogical);
 
@@ -87,9 +88,9 @@ Delta_jig_twist = getDeltaJigTwist(p.Results.pchfilename);
 
 %% aerodynamics
 if p.Results.flexible
-    wing_main = wingCreateWithCPACS( tiglHandle, 1, p.Results.numpanelwing, 'spacing', 'like_chord', 'airfoil_method', 'analytic', 'is_unsteady', p.Results.unsteady, 'stall', p.Results.stall, 'le_shock', p.Results.le_shock, 'flexible', structure_red, 'ControlsFilename',p.Results.ControlsMainFile, 'Mach', p.Results.Mach, 'AdjustJigTwist', Delta_jig_twist );
-    wing_htp = wingCreateWithCPACS( tiglHandle, 2, p.Results.numpanelhtp, 'spacing', 'like_chord', 'airfoil_method', 'analytic', 'is_unsteady', p.Results.unsteady, 'stall', p.Results.stall, 'le_shock', p.Results.le_shock, 'flexible', structure_red, 'ControlsFilename',p.Results.ControlsHtpFile, 'Mach', p.Results.Mach );
-    wing_vtp = wingCreateWithCPACS( tiglHandle, 3, p.Results.numpanelvtp, 'spacing', 'like_chord', 'airfoil_method', 'analytic', 'is_unsteady', p.Results.unsteady, 'stall', p.Results.stall, 'le_shock', p.Results.le_shock, 'flexible', structure_red, 'ControlsFilename',p.Results.ControlsVtpFile, 'Mach', p.Results.Mach );
+    wing_main = wingCreateWithCPACS( tiglHandle, 1, p.Results.numpanelwing, 'spacing', 'like_chord', 'airfoil_method', 'analytic', 'is_unsteady', p.Results.unsteady, 'stall', p.Results.stall, 'le_shock', p.Results.le_shock, 'flexible', structure_red, 'ControlsFilename',p.Results.ControlsMainFile, 'Mach', p.Results.Mach, 'Alt', p.Results.Alt, 'AdjustJigTwist', Delta_jig_twist );
+    wing_htp = wingCreateWithCPACS( tiglHandle, 2, p.Results.numpanelhtp, 'spacing', 'like_chord', 'airfoil_method', 'analytic', 'is_unsteady', p.Results.unsteady, 'stall', p.Results.stall, 'le_shock', p.Results.le_shock, 'flexible', structure_red, 'ControlsFilename',p.Results.ControlsHtpFile, 'Mach', p.Results.Mach, 'Alt', p.Results.Alt );
+    wing_vtp = wingCreateWithCPACS( tiglHandle, 3, p.Results.numpanelvtp, 'spacing', 'like_chord', 'airfoil_method', 'analytic', 'is_unsteady', p.Results.unsteady, 'stall', p.Results.stall, 'le_shock', p.Results.le_shock, 'flexible', structure_red, 'ControlsFilename',p.Results.ControlsVtpFile, 'Mach', p.Results.Mach, 'Alt', p.Results.Alt );
     if p.Results.unsteady
         fuselage = fuselageCreateWithCpacs( tiglHandle, 'Fuse', axis_reversed, p.Results.numsegfuse, 'flexible', structure_red, 'unsteady' );
     else
